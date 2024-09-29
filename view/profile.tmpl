@@ -1,12 +1,8 @@
 {{ template "layout" . }}
 
-{{ define "title" }}{{ .ProfileUser.PlayerName }}'s Profile - {{ .App.Config.ApplicationName }}{{ end }}
+{{ define "title" }}{{ .ProfileUser.PlayerName }}'s Profile - {{ .App.Config.InstanceName }}{{ end }}
 
 {{ define "content" }}
-
-  {{ template "header" . }}
-
-
   <h2 style="text-align: center;">{{ .ProfileUser.PlayerName }}</h2>
   {{/* prettier-ignore-start */}}
   <h6 style="text-align: center;">{{ .ProfileUser.UUID }}<br />{{ .ProfileUserID }}</h6>
@@ -477,7 +473,4 @@
 	skinViewer.render();
 </script>
   {{ end }}
-
-  {{ template "footer" . }}
-
 {{ end }}

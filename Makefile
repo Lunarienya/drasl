@@ -7,7 +7,7 @@ npm-install:
 swag:
 	swag init --generalInfo api.go --output . --outputTypes json
 
-prebuild: npm-install swag
+prebuild: npm-install
 	node esbuild.config.js
 
 build: prebuild

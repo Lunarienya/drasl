@@ -1,32 +1,28 @@
 {{ define "header" }}
-  <nav class="header-nav">
-    <div>
-      <h1>
-        <a class="logo" href="{{ .App.FrontEndURL }}">
-          <img
-            src="{{ .App.FrontEndURL }}/web/public/logo.svg"
-            alt="{{ .App.Config.ApplicationName }} logo"
-          />{{ .App.Config.ApplicationName }}
-        </a>
-      </h1>
-    </div>
-    <div style="text-align: right">
-      <a href="{{ .App.FrontEndURL }}/web/registration">Register</a>
-      {{ if .User }}
-        {{ if .User.IsAdmin }}
-          <a href="{{ .App.FrontEndURL }}/web/admin">Admin</a>
+  <nav class="bg-zinc-950 w-full">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <a href="/" class="flex items-center space-x-3">
+        <img class="h-12" src="{{ .App.FrontEndURL }}/web/public/logo.svg" alt="{{ .App.Config.ApplicationName }} logo">
+        </img>
+        <span class="self-center text-2xl font-bold dark:text-white">{{ .App.Config.InstanceName }}</span>
+      </a>
+      <div class="flex items-center space-x-3">
+        {{ if .User }}
+          {{ if .User.IsAdmin }}
+            <a class="text-violet-600" href="{{ .App.FrontEndURL }}/web/admin">Admin</a>
+          {{ end}}
+          <a class="text-violet-600" href="{{ .App.FrontEndURL }}/web/profile">{{ .User.Username }}'s&nbsp;Profile</a>
+        {{ else }}
+            <a class="text-violet-600" href="{{ .App.FrontEndURL }}/web/registration">Register</a>
+            <!--
+            <a href="/web/login">
+              <button class="bg-violet-600 rounded px-4 py-2 text-base text-white hover:enabled:bg-primary/90 flex gap-2 items-center justify-center transition-all active:enabled:scale-[98%] disabled:opacity-50 disabled:cursor-not-allowed">
+                Login
+              </button>
+            </a>
+            -->
         {{ end }}
-        <a href="{{ .App.FrontEndURL }}/web/profile"
-          >{{ .User.Username }}'s&nbsp;Profile</a
-        >
-        <form
-          style="display: inline"
-          action="{{ .App.FrontEndURL }}/web/logout"
-          method="post"
-        >
-          <input type="submit" value="Log Out" />
-        </form>
-      {{ end }}
+      </div>
     </div>
   </nav>
 

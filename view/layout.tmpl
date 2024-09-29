@@ -1,6 +1,6 @@
 {{ define "base" }}
   <!doctype html>
-  <html lang="en">
+  <html lang="en" class="dark bg-white dark:bg-zinc-950 text-white">
     <head>
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,15 +20,13 @@
       />
       <title>{{ block "title" . }}{{ end }}</title>
     </head>
-    <body>
-      <div id="background"></div>
-      <main id="content">{{ block "content" . }}{{ end }}</main>
-      {{ if .App.Config.EnableBackgroundEffect }}
-      <script type="module">
-        import { background } from "{{.App.FrontEndURL}}/web/public/bundle.js";
-        background(document.querySelector("#background"));
-      </script>
-      {{ end }}
+    <body class="flex flex-col min-h-screen">
+        {{ template "header" . }}
+          <main class="flex flex-col">
+            <div class="max-w-screen-xl flex flex-nowrap flex-col mx-auto mb-8 px-4 space-y-5">
+              {{ block "content" . }}{{ end }}</main>
+            </div>
+        {{ template "footer" .}}
     </body>
   </html>
 {{ end }}
